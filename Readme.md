@@ -1,7 +1,7 @@
 # Личный проект «YetiCave»
 
 * Студент: [Gleb Motuz](https://up.htmlacademy.ru/php/9/user/184288).
-* Наставник: `Неизвестно`.
+* Наставник: [Evgenii Shumeiko](https://github.com/EvgeniiShumeiko).
 
 ---
 
