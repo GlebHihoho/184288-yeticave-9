@@ -43,6 +43,17 @@ $auction_lots = [
     ]
 ];
 
+function add_currency($cost, $currency = '₽') {
+    return $cost . ' ' . $currency;
+}
+function get_cost($cost) {
+    $cost = ceil($cost);
+    $cost = $cost <= 1000
+        ? $cost
+        : number_format($cost, 0, '', ' ');
+    return add_currency($cost);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -116,7 +127,7 @@ $auction_lots = [
                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount">Стартовая цена</span>
-                            <span class="lot__cost"><?=$lot['cost']?><b class="rub">р</b></span>
+                            <span class="lot__cost"><?=get_cost($lot['cost'])?></span>
                         </div>
                         <div class="lot__timer timer">
                             12:23
