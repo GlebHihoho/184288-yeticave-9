@@ -4,7 +4,7 @@ $is_auth = rand(0, 1);
 $user_name = 'Gleb';
 
 $categories = ['Доски и лыжи', 'Крепления', 'Ботинки', 'Одежда', 'Инструменты', 'Разное'];
-$goods = [
+$auction_lots = [
     [
         'title' => '2014 Rossignol District Snowboard',
         'category' => $categories[0],
@@ -42,6 +42,20 @@ $goods = [
         'url' => 'img/lot-6.jpg'
     ]
 ];
+
+function add_currency($cost, $currency = '₽') {
+    return $cost . ' ' . $currency;
+}
+
+function get_cost($cost) {
+    $cost = ceil($cost);
+    $cost = $cost <= 1000
+        ? $cost
+        : number_format($cost, 0, '', ' ');
+
+    return add_currency($cost);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -92,9 +106,9 @@ $goods = [
         <h2 class="promo__title">Нужен стафф для катки?</h2>
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
         <ul class="promo__list">
-            <?php foreach ($categories as $key => $value): ?>
+            <?php foreach ($categories as $category_name): ?>
             <li class="promo__item promo__item--boards">
-                <a class="promo__link" href="pages/all-lots.html"><?=$value;?></a>
+                <a class="promo__link" href="pages/all-lots.html"><?=$category_name;?></a>
             </li>
             <?php endforeach; ?>
         </ul>
@@ -104,7 +118,7 @@ $goods = [
             <h2>Открытые лоты</h2>
         </div>
         <ul class="lots__list">
-            <?php foreach ($goods as $key => $value): ?>
+            <?php foreach ($auction_lots as $key => $value): ?>
             <li class="lots__item lot">
                 <div class="lot__image">
                     <img src="<?=$value['url']?>" width="350" height="260" alt="">
@@ -115,7 +129,7 @@ $goods = [
                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount">Стартовая цена</span>
-                            <span class="lot__cost"><?=$value['cost']?><b class="rub">р</b></span>
+                            <span class="lot__cost"><?=get_cost($value['cost'])?></span>
                         </div>
                         <div class="lot__timer timer">
                             12:23
@@ -132,9 +146,9 @@ $goods = [
 <footer class="main-footer">
     <nav class="nav">
         <ul class="nav__list container">
-            <?php foreach ($categories as $key => $value): ?>
+            <?php foreach ($categories as $category_name): ?>
             <li class="nav__item">
-                <a href="pages/all-lots.html"><?=$value;?></a>
+                <a href="pages/all-lots.html"><?=$category_name;?></a>
             </li>
             <?php endforeach; ?>
         </ul>
