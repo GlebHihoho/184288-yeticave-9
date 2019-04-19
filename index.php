@@ -43,17 +43,10 @@ $auction_lots = [
     ]
 ];
 
-function add_currency($cost, $currency = '₽')
+function format_cost(float $cost) : string
 {
-    return $cost . ' ' . $currency;
-}
-function get_cost($cost)
-{
-    $cost = ceil($cost);
-    $cost = $cost <= 1000
-        ? $cost
-        : number_format($cost, 0, '', ' ');
-    return add_currency($cost);
+    $round_cost = ceil($cost);
+    return number_format($round_cost, 0, '', ' ') . " ₽";
 }
 
 ?>
@@ -129,7 +122,7 @@ function get_cost($cost)
                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount">Стартовая цена</span>
-                            <span class="lot__cost"><?=get_cost($lot['cost'])?></span>
+                            <span class="lot__cost"><?=format_cost($lot['cost'])?></span>
                         </div>
                         <div class="lot__timer timer">
                             12:23
