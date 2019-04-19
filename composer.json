@@ -1,0 +1,16 @@
+{
+    "name": "gleb/yeticave.local",
+    "type": "project",
+    "authors": [
+        {
+            "name": "GlebHihoho",
+            "email": "gleb.motuz@mail.ru"
+        }
+    ],
+    "require": {
+
+    },
+    "require-dev": {
+      "squizlabs/php_codesniffer": "3.*"
+    }
+}
