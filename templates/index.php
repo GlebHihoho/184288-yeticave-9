@@ -48,3 +48,19 @@ function format_cost(float $cost) : string
     $round_cost = ceil($cost);
     return number_format($round_cost, 0, '', ' ') . " ₽";
 }
+
+date_default_timezone_set("Europe/Moscow");
+
+$time_stemp_now = time();
+$time_stemp_midnight = strtotime('tomorrow');
+
+$time_to_finishing = $time_stemp_midnight - $time_stemp_now;
+
+$class_timer_finishing = '';
+$seconds_in_hour = 3600;
+
+if ($time_to_finishing <= $seconds_in_hour) {
+    $class_timer_finishing = 'timer--finishing';
+}
+
+$time_to_finishing = date('H:i', $time_to_finishing);
