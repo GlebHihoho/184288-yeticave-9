@@ -1,5 +1,5 @@
 <?php
-require('./templates/index.php');
+require('./auctionHelper.php');
 require('./helpers.php');
 
 $main_content = include_template('main.php', [
