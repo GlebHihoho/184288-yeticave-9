@@ -5,7 +5,7 @@ require('./helpers.php');
 $main_content = include_template('main.php', [
     'categories' => $categories,
     'auction_lots' => $auction_lots,
-    'class_timer_finishing' => $class_timer_finishing,
+    'is_finishing_lot' => $is_finishing_lot,
     'time_to_finishing' => $time_to_finishing
 ]);
 $page_content = include_template('layout.php', [

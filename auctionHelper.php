@@ -51,16 +51,24 @@ function format_cost(float $cost) : string
 
 date_default_timezone_set("Europe/Moscow");
 
-$time_stemp_now = time();
-$time_stemp_midnight = strtotime('tomorrow');
+function time_to_finish_auction_lot(string $lot_time) : float
+{
+    $time_stemp_now = time();
+    $time_stemp_midnight = strtotime($lot_time);
+    $time_to_finishing = $time_stemp_midnight - $time_stemp_now;
 
-$time_to_finishing = $time_stemp_midnight - $time_stemp_now;
-
-$class_timer_finishing = '';
-$seconds_in_hour = 3600;
-
-if ($time_to_finishing <= $seconds_in_hour) {
-    $class_timer_finishing = 'timer--finishing';
+    return $time_to_finishing;
 }
 
+function lot_time_is_finishing(string $lot_time) : bool
+{
+    $seconds_in_hour = 3600;
+    $time_to_finishing = time_to_finish_auction_lot($lot_time);
+
+    return $time_to_finishing <= $seconds_in_hour;
+}
+
+$is_finishing_lot = lot_time_is_finishing('tomorrow');
+
+$time_to_finishing = time_to_finish_auction_lot('tomorrow');
 $time_to_finishing = date('H:i', $time_to_finishing);
