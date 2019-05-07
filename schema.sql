@@ -21,13 +21,12 @@ CREATE TABLE lots(
   step_bet INT UNSIGNED NOT NULL,
   owner_id INT UNSIGNED NOT NULL,
   winner_id INT UNSIGNED,
-  category_id INT UNSIGNED NOT NULL,
+  category_id TINYINT UNSIGNED,
   FOREIGN KEY (owner_id) REFERENCES users(id),
   FOREIGN KEY (winner_id) REFERENCES users(id),
   FOREIGN KEY (category_id) REFERENCES categories(id),
   INDEX lot_index (name, category_id)
 );
-
 
 CREATE TABLE bets(
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
