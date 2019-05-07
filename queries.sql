@@ -49,11 +49,12 @@ SELECT name FROM categories;
 -- Получить самые новые, открытые лоты.
 -- Каждый лот должен включать название, стартовую цену,
 -- ссылку на изображение, цену, название категории;
-SELECT lots.name as lot_name, lots.start_price, lots.img_url, categories.name as categori_name, MAX(bets.cost)
+SELECT lots.name as lot_name, lots.start_price, lots.img_url, categories.name as category_name, MAX(bets.cost)
 FROM lots
 JOIN categories ON categories.id = lots.id
 JOIN bets ON bets.lot_id = lots.id
 WHERE winner_id != NULL
+GROUP BY lots.name
 ORDER BY lots.time_start DESC;
 
 -- Показать лот по его id. Получите также название категории, к которой принадлежит лот;
