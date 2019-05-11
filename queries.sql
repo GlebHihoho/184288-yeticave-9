@@ -67,3 +67,13 @@ UPDATE lots SET name = '9000 Rossignol District Snowboard' WHERE lots.id = 1;
 
 -- Получить список самых свежих ставок для лота по его идентификатору;
 SELECT id, MAX(cost), user_id, lot_id FROM bets WHERE lot_id = 3;
+
+
+SELECT
+  bets.id,
+  bets.time_start,
+  users.name
+FROM bets
+JOIN users ON users.id = bets.id
+WHERE bets.lot_id = 6
+ORDER BY bets.time_start DESC;
