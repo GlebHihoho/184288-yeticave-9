@@ -54,6 +54,7 @@ FROM lots
 JOIN categories ON categories.id = lots.id
 JOIN bets ON bets.lot_id = lots.id
 WHERE winner_id != NULL
+GROUP BY lots.name
 ORDER BY lots.time_start DESC;
 
 -- Показать лот по его id. Получите также название категории, к которой принадлежит лот;
