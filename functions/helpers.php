@@ -145,4 +145,50 @@ function include_template($name, array $data = []) {
     return $result;
 }
 
+/**
+ * Функция получения записей из БД
+ * @param $link
+ * @param $sql
+ * @param array $data
+ * @return array|null
+ */
+function db_fetch_data($link, $sql, $data = [])
+{
+    $result = [];
+    $stmt = db_get_prepare_stmt($link, $sql, $data);
+    mysqli_stmt_execute($stmt);
+    $res = mysqli_stmt_get_result($stmt);
+    if ($res) {
+        $result = mysqli_fetch_all($res, MYSQLI_ASSOC);
+    }
+    return $result;
+}
+/**
+ * Функция добавление новой  записи из БД
+ * @param $link
+ * @param $sql
+ * @param array $data
+ * @return int
+ */
+function db_insert_data($link, $sql, $data = []): int
+{
+    $stmt = db_get_prepare_stmt($link, $sql, $data);
+    $result = mysqli_stmt_execute($stmt);
+    if ($result) {
+        $result = mysqli_insert_id($link);
+    }
+    return $result;
+}
+
+function print_err(string $title, string $text, int $code): array
+{
+    http_response_code($code);
+    $content = include_template('error.php', [
+        'text' => $text,
+        'title' => $title
+    ]);
+
+    return [$title, $content];
+}
+
 

@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title><?=$title?></title>
-        <link href="../css/normalize.min.css" rel="stylesheet">
-        <link href="../css/style.css" rel="stylesheet">
+        <link href="<?=STATIC_DIR?>css/normalize.min.css" rel="stylesheet">
+        <link href="<?=STATIC_DIR?>css/style.css" rel="stylesheet">
     </head>
     <body>
         <div class="page-wrapper">
@@ -96,7 +96,7 @@
             </div>
         </footer>
 
-        <script src="flatpickr.js"></script>
-        <script src="script.js"></script>
+        <script src="<?=STATIC_DIR?>scripts/flatpickr.js"></script>
+        <script src="<?=STATIC_DIR?>scripts/script.js"></script>
     </body>
 </html>
